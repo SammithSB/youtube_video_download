@@ -7,10 +7,11 @@ app = Flask(__name__)
 @app.route('/download', methods=['GET', 'POST'])
 def index():
     url=request.form['x_values']
+    path = request.form['path']
     try:
         youtube= YouTube(url)
         video = youtube.streams.get_highest_resolution()
-        video.download()
+        video.download(path)
         return render_template('thanks.html')
 
     except:
