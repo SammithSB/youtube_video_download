@@ -13,9 +13,9 @@ def index():
         video = youtube.streams.get_highest_resolution()
         video.download(path)
         return render_template('thanks.html')
-
-    except:
-        return render_template('error.html')
+    except Exception as e:
+        f = str(e)
+        return f
     
 @app.route('/', methods=['GET', 'POST'])
 def start():
